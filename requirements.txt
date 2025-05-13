@@ -1,0 +1,5 @@
+Flask
+requests
+schedule
+gunicorn
+python-dotenv
