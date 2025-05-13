@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <title>ISIR Watcher</title>
+</head>
+<body>
+  <h1>ISIR Watcher</h1>
+
+  <form method="post">
+    <input type="text" name="ic" placeholder="Zadej IČ" required>
+    <button type="submit">Přidat</button>
+  </form>
+
+  <h2>Sledovaná IČ</h2>
+  <ul>
+    {% for ic in ics %}
+      <li>{{ ic }} <a href="{{ url_for('remove_ic', ic=ic) }}">[Odebrat]</a></li>
+    {% endfor %}
+  </ul>
+
+  <h2><a href="{{ url_for('manual_check') }}">Zkontrolovat změny</a></h2>
+
+  {% if new_events %}
+    <h3>Nové události:</h3>
+    {% for ic, events in new_events.items() %}
+      <h4>{{ ic }}</h4>
+      <ul>
+        {% for e in events %}
+          <li>{{ e.timestamp }} – {{ e.text }}</li>
+        {% endfor %}
+      </ul>
+    {% endfor %}
+  {% endif %}
+</body>
+</html>
