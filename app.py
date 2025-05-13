@@ -5,7 +5,7 @@ import os
 app = Flask(__name__)
 os.makedirs("data", exist_ok=True)
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])  # <- Tohle je důležité!
 def index():
     if request.method == "POST":
         ic = request.form.get("ic")
